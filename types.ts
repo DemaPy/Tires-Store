@@ -18,8 +18,8 @@ export interface IProduct {
   price: string;
   isFeatured: string
   size: ISize
-  color: Color
-  images: Image[]
+  color: IColor
+  images: IImage[]
 }
 
 export interface ISize {
@@ -28,7 +28,7 @@ export interface ISize {
   name: string
 }
 
-export interface Color {
+export interface IColor {
   id: string
   name: string
   value: string
