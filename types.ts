@@ -34,7 +34,7 @@ export interface Color {
   value: string
 }
 
-export interface Image {
+export interface IImage {
   url: string
   id: string
 }

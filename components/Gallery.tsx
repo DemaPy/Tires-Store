@@ -1,12 +1,39 @@
-import React from "react";
-import { Image } from "../types";
+"use client";
+import { IImage } from "../types";
+import { Tab } from "@headlessui/react";
+import GalleryTab from "./GalleryTab";
+import Image from "next/image";
 
 interface IGallery {
-    images: Image[]
+  images: IImage[];
 }
 
-const Gallery = ({}: IGallery) => {
-  return <div>Gallery</div>;
+const Gallery = ({ images }: IGallery) => {
+  return (
+    <Tab.Group as="div" className="flex flex-col-reverse">
+      <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+        <Tab.List className="grid grid-cols-4 gap-6">
+          {images.map((image) => (
+            <GalleryTab key={image.id} image={image} />
+          ))}
+        </Tab.List>
+      </div>
+      <Tab.Panels className="aspect-square w-full">
+        {images.map((image) => (
+          <Tab.Panel key={image.id}>
+            <div className="aspect-square relative h-full w-full rounded-sm overflow-hidden">
+              <Image
+                fill
+                alt="image"
+                src={image.url}
+                className="object-cover object-center"
+              />
+            </div>
+          </Tab.Panel>
+        ))}
+      </Tab.Panels>
+    </Tab.Group>
+  );
 };
 
 export default Gallery;
