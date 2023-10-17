@@ -6,13 +6,14 @@ import Button from "./ui/Button";
 import { Plus, X } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 import IconButton from "./ui/IconButton";
+import Filter from "../app/(routes)/category/[categoryId]/components/Filter";
 
 interface IMobileFilters {
   sizes: ISize[];
   colors: IColor[];
 }
 
-const MobileFilters = ({}: IMobileFilters) => {
+const MobileFilters = ({ colors, sizes }: IMobileFilters) => {
   const [open, setOpen] = useState(false);
 
   const onOpen = () => setOpen(true);
@@ -39,6 +40,11 @@ const MobileFilters = ({}: IMobileFilters) => {
           >
             <div className="flex items-center justify-end px-4">
               <IconButton icon={<X size={15} />} onClick={onClose} />
+            </div>
+
+            <div className="p-4">
+              <Filter valueKey="sizeId" name="Sizes" data={sizes} />
+              <Filter valueKey="colorId" name="Colors" data={colors} />
             </div>
           </Dialog.Panel>
         </div>
